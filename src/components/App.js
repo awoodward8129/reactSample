@@ -13,9 +13,7 @@ import BookDetailsPage from './book/BookDetailsPage'
 import { Navbar, Jumbotron, Button } from 'react-bootstrap';
 import configureStore from '../store/configureStore';
 import * as bookActions from '../actions/bookActions';
-
-const store = configureStore();
-const books = store.dispatch(bookActions.fetchBooks());
+let state = null;
 
 const renderIndex = () => <IndexPage blogs={blogs} />;
 
@@ -24,15 +22,25 @@ const renderBlog = ({ match, staticContext }) => {
   const blog = blogs.find(current => current.id === id);
   return <BlogPage blog={blog} />;
 };
+
 const renderBook = ({ match, staticContext }) => {
   const id = match.params.id;
-  const state = store.getState();
   const book = state.books.find(current => current.id === id);
   return <BookDetailsPage book={book} />;
 };
 
-
 class App extends Component {
+   constructor(props) {
+    super(props);
+    state = props.store.getState();
+
+    props.store.subscribe(() => {
+      // When state will be updated(in our case, when items will be fetched), we will update local component state and force component to rerender with new data.
+     state = props.store.getState();
+    });
+
+  }
+
   render() {
     return (
       <Layout>

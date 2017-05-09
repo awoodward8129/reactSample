@@ -2,7 +2,6 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import BookDetails from './BookDetails'
 import * as bookActions from '../../actions/bookActions';
 import { Link } from 'react-router-dom';
 

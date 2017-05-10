@@ -40,6 +40,21 @@ export const createBook = (book) => {
   };
 };
 
+export const updateBook = (book) => {
+  return (dispatch) => {
+    return Axios.put(apiUrl + '/'+book.id, book)
+      .then(response => {
+        // Dispatch a synchronous action
+        // to handle data
+        dispatch(updateBookSuccess(response.data))
+      })
+      .catch(error => {
+        throw(error);
+      });
+  };
+};
+
+
 export const deleteBookSuccess = (book) => {
   // Return action
   return {
@@ -62,6 +77,15 @@ export const deleteBook = (book) => {
         throw(error);
       });
   };
+};
+export const updateBookSuccess = (book) => {
+  // Return action
+  return {
+    // Unique identifier
+    type: 'UPDATE_BOOK_SUCCESS',
+    // Payload
+    book: book
+  }
 };
 
 export const createBookSuccess = (book) => {

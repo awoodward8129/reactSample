@@ -16,7 +16,7 @@ import configureStore from '../store/configureStore';
 import * as bookActions from '../actions/bookActions';
 let state = null;
 let store = null;
-
+let history =null;
 const renderIndex = () => <IndexPage blogs={blogs} />;
 
 const renderBlog = ({ match, staticContext }) => {
@@ -28,7 +28,8 @@ const renderBlog = ({ match, staticContext }) => {
 const renderBook = ({ match, staticContext }) => {
   const id = match.params.id;
   const book = state.books.find(current => current.id === id);
-  return <BookDetailsPage book={book} />;
+  console.log(history);
+  return <BookDetailsPage book={book} history={history}/>;
 };
 const renderCart = ({ match, staticContext }) => {
   const cart = state.cart;
@@ -40,6 +41,7 @@ class App extends Component {
     super(props);
     state = props.store.getState();
     store= props.store;
+    history = props.history;
     props.store.subscribe(() => {
       // When state will be updated(in our case, when items will be fetched), we will update local component state and force component to rerender with new data.
      state = props.store.getState();

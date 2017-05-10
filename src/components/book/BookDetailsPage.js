@@ -5,7 +5,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import BookDetails from './BookDetails'
 import * as bookActions from '../../actions/bookActions';
-import { Link, BrowserRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
 
 class BookDetailsPage extends Component {
    constructor(props) {
@@ -23,7 +24,7 @@ class BookDetailsPage extends Component {
     deleteBook(book){
      
       this.props.deleteBook(book);
-      
+      this.props.history.goBack();
     }
 
     render() {
@@ -32,6 +33,7 @@ class BookDetailsPage extends Component {
                 <h1>Book Details Page</h1>
                <BookDetails book={this.props.book} addToCart={this.addToCart.bind(this)}
                 deleteBook={this.deleteBook.bind(this)}  />
+            
             </div>
         )
     }
@@ -41,7 +43,6 @@ const mapStateToProps = (state, ownProps) => {
   return {
     // You can now say this.props.book
    book : state.book
-
   }
 };
 
@@ -51,9 +52,8 @@ const mapDispatchToProps = (dispatch) => {
     // You can now say this.props.createBook
      fetchBookById: bookId => dispatch(bookActions.fetchBookById(bookId)),
      addToCart: item => dispatch(bookActions.addToCart(item)),
-     deleteBook: book => dispatch(bookActions.deleteBook(book))
- 
-    
+     deleteBook: book => dispatch(bookActions.deleteBook(book)),
+     updateBook: book => dispatch(bookActions.updateBook(book))
   }
 };
    

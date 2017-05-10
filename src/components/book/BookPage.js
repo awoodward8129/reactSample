@@ -44,6 +44,7 @@ class Book extends React.Component {
           <h3>New Book</h3>
           {/* Import and inject Book form */}
           <BookForm submitBook={this.submitBook.bind(this)} />
+       <button className="btn btn-warning" onClick={e => this.props.history.push('/')}>go back</button>
         </div>
       </div>
 

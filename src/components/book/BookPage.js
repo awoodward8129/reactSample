@@ -54,7 +54,7 @@ class Book extends React.Component {
 const mapStateToProps = (state, ownProps) => {
   return {
     // You can now say this.props.books
-    books: state.books
+    books: state.books,
   }
 };
 
@@ -63,6 +63,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     // You can now say this.props.createBook
     createBook: book => dispatch(bookActions.createBook(book))
+    
   }
 };
 

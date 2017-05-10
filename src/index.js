@@ -10,7 +10,7 @@ import configureStore from './store/configureStore';
 import * as bookActions from './actions/bookActions';
 const store = configureStore();
 store.dispatch(bookActions.fetchBooks());
-
+store.dispatch(bookActions.fetchCart());
 const AppClient = () => (
    <Provider store={store}>
     <Router history={browserHistory}>

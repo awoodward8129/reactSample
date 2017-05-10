@@ -8,12 +8,14 @@ import Greeting from './Greeting';
 import BlogPage from './BlogPage';
 import blogs from '../data/blogs';
 import Book from './book/BookPage';
+import CartPage from './cart/CartPage';
 import About from './common/About';
 import BookDetailsPage from './book/BookDetailsPage'
 import { Navbar, Jumbotron, Button } from 'react-bootstrap';
 import configureStore from '../store/configureStore';
 import * as bookActions from '../actions/bookActions';
 let state = null;
+let store = null;
 
 const renderIndex = () => <IndexPage blogs={blogs} />;
 
@@ -28,12 +30,16 @@ const renderBook = ({ match, staticContext }) => {
   const book = state.books.find(current => current.id === id);
   return <BookDetailsPage book={book} />;
 };
+const renderCart = ({ match, staticContext }) => {
+  const cart = state.cart;
+  return <CartPage cart={cart} />;
+};
 
 class App extends Component {
    constructor(props) {
     super(props);
     state = props.store.getState();
-
+    store= props.store;
     props.store.subscribe(() => {
       // When state will be updated(in our case, when items will be fetched), we will update local component state and force component to rerender with new data.
      state = props.store.getState();
@@ -48,8 +54,9 @@ class App extends Component {
           <Route exact path="/" render={renderIndex} />
           <Route exact path="/blog/:id" render={renderBlog} />
           <Route exact path='/books' component={Book} />
-          <Route path="/books/:id" render={renderBook} />
+          <Route path="/books/:id" component={renderBook} />
           <Route exact path="/about" render={About} />
+          <Route path="/cart" component={renderCart}></Route>
         </Switch>
       </Layout>
     );

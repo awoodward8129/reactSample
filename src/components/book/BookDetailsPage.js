@@ -1,32 +1,52 @@
 // ./src/components/book/BookDetailsPage.js
-import React, { PropTypes } from 'react';
+
+import React, { PropTypes, Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import BookDetails from './BookDetails'
 import * as bookActions from '../../actions/bookActions';
 import { Link } from 'react-router-dom';
 
-export const BookDetailsPage = ({ book }) => {
-    return (
-        <div>
-            <h1>Book Details Page</h1>
-            <div className="media">
-                <div className="media-left">
-                    <a href="#">
-                        <img className="media-object" src="http://placehold.it/200/450" alt="Placehold" />
-                    </a>
-                </div>
-                <div className="media-body">
-                    <h4 className="media-heading">{book.title}</h4>
-                    <ul>
-                        <li><stron>Author: </stron> {book.author}</li>
-                        <li><stron>Price: </stron> {book.price}</li>
-                        <li><stron>Year: </stron> {book.year}</li>
-                        <br />
-                        <button className="btn btn-primary">Buy</button>
-                    </ul>
-                </div>
+class BookDetailsPage extends Component {
+   constructor(props) {
+    super(props);
+  
+   }
+   addToCart(book){
+      const item = {
+        title: book.title,
+        price: book.price
+      };
+      this.props.addToCart(item);
+    }
+
+    render() {
+        return (
+            <div>
+                <h1>Book Details Page</h1>
+               <BookDetails book={this.props.book} addToCart={this.addToCart.bind(this)}/>
             </div>
-        </div>
-    )
-}
-export default BookDetailsPage;
+        )
+    }
+   }
+const mapStateToProps = (state, ownProps) => {
+  state.book = ownProps.book;
+  return {
+    // You can now say this.props.book
+   book : state.book
+
+  }
+};
+
+// Maps actions to props
+const mapDispatchToProps = (dispatch) => {
+  return {
+    // You can now say this.props.createBook
+     fetchBookById: bookId => dispatch(bookActions.fetchBookById(bookId)),
+     addToCart: item => dispatch(bookActions.addToCart(item))
+ 
+    
+  }
+};
+   
+export default connect(mapStateToProps, mapDispatchToProps)(BookDetailsPage);

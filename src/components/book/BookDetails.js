@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const BookDetails = ({book, addToCart, deleteBook}) => {
     return (
@@ -17,6 +18,7 @@ const BookDetails = ({book, addToCart, deleteBook}) => {
             <br/>
             <button className="btn btn-primary" onClick={e => addToCart(book)}>Buy</button>
             <button className="btn btn-warning" onClick={e => deleteBook(book)}>Delete</button>
+            <Link key={book.id} to={`/bookUpdate/${book.id}`}>Update</Link>
           </ul>
         </div>
       </div>

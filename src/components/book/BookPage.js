@@ -34,7 +34,7 @@ class Book extends React.Component {
               {this.props.books.map((b, i) => <tr key={i}>
                 <td>{b.title}</td>
                 <td><Link key={b.id} to={`/books/${b.id}`}>View</Link></td>
-
+                  <td><Link key={b.id} to={`/bookUpdate/${b.id}`}>Update</Link></td>
               </tr>)}
             </tbody>
           </table>

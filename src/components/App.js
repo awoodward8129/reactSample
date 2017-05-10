@@ -14,6 +14,7 @@ import BookDetailsPage from './book/BookDetailsPage'
 import { Navbar, Jumbotron, Button } from 'react-bootstrap';
 import configureStore from '../store/configureStore';
 import * as bookActions from '../actions/bookActions';
+import BookUpdatePage from './book/BookUpdatePage'
 let state = null;
 let store = null;
 let history =null;
@@ -30,6 +31,12 @@ const renderBook = ({ match, staticContext }) => {
   const book = state.books.find(current => current.id === id);
   console.log(history);
   return <BookDetailsPage book={book} history={history}/>;
+};
+const renderBookUpdate = ({ match, staticContext }) => {
+  const id = match.params.id;
+  const book = state.books.find(current => current.id === id);
+  console.log(history);
+  return <BookUpdatePage book={book} history={history}/>;
 };
 const renderCart = ({ match, staticContext }) => {
   const cart = state.cart;
@@ -57,6 +64,7 @@ class App extends Component {
           <Route exact path="/blog/:id" render={renderBlog} />
           <Route exact path='/books' component={Book} />
           <Route path="/books/:id" component={renderBook} />
+          <Route path ="/bookUpdate/:id" component={renderBookUpdate}/>
           <Route exact path="/about" render={About} />
           <Route path="/cart" component={renderCart}></Route>
         </Switch>

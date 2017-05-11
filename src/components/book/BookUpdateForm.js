@@ -1,43 +1,74 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Field, reduxForm } from 'redux-form';
-
+import { connect } from 'react-redux';
+import * as bookActions from '../../actions/bookActions';
 
 
 class BookUpdateForm extends Component {
+    constructor(props) {
+        super(props);
+    }
 
-    
-
-  render() {
-    const { handleSubmit, book } = this.props;
+    componentDidMount() {
+      const initData = {
  
-    
+        "title": this.props.book.title,
+        "price": this.props.book.price,
+        "year": this.props.book.year,
+        }
+      this.props.initialize(initData);
+    }
+
+    handleFormSubmit(formProps) {
+        var input = {
+              id: this.props.book.id,
+              title: formProps.title,
+              price: formProps.price,
+              year: formProps.year
+            };
+     this.props.updateBook(input);
+    }
+
+    render(){
+    const { handleSubmit } = this.props;
     return (
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="author">Author</label>
-          <input type="text" />
-        </div>
-        <div>
-          <label htmlFor="lastName">Title</label>
-          <input type="text"  />
-        </div>
-        <div>
-          <label htmlFor="price">Price</label>
-          <input type="number"  />
-        </div>
-        <button type="submit">Submit</button>
-      </form>
+        <form  onSubmit={handleSubmit(this.handleFormSubmit.bind(this))}>
+
+ 
+      <Field name="title" type="text" component={renderField} label="Title"/>
+      <Field name="price" type="number" component={renderField} label="Price"/>
+      <Field name="year" type="text" component={renderField} label="Year"/>
+      <button action="submit">Save changes</button>
+    </form>
     );
   }
 }
 
+const renderField = field => (
+    <div>
+      <label>{field.label}</label>
+      <input {...field.input}/>
+      {field.touched && field.error && <div className="error">{field.error}</div>}
+    </div>
+);
 
 
-export default reduxForm({
-  form: 'initializing',
+function mapStateToProps(state) {
+  return {
+    book: state.book
+  };
+}
+const mapDispatchToProps = (dispatch) => {
+  return {
+    // You can now say this.props.createBook
 
-},
+     updateBook: book => dispatch(bookActions.updateBook(book))
+  }
+};
+   
 
-    // mapDispatchToProps (will bind action creator to dispatch)
-)(BookUpdateForm)
+const form = reduxForm({
+  form: 'BookUpdateForm'
+});
+export default connect(mapStateToProps, mapDispatchToProps)(form(BookUpdateForm));

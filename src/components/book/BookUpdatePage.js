@@ -7,14 +7,14 @@ class BookUpdatePage extends React.Component {
 constructor(props) {
     super(props);
   }
-  submit = (values) => {
-    // Do something with the form values
-    console.log(values);
+   submitBook(input) {
+    this.props.updateBook(input);
   }
+
 
   render() {
     return (
-      <BookUpdateForm onSubmit={this.submit}/>
+      <BookUpdateForm onSubmit={this.submitBook.bind(this)}/>
     );
   }
 }

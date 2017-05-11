@@ -8,8 +8,6 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
 import configureStore from './store/configureStore';
 import * as bookActions from './actions/bookActions';
-
-
 import {createBrowserHistory} from 'history';
 
 const history = createBrowserHistory();
@@ -18,7 +16,6 @@ const store = configureStore();
 store.dispatch(bookActions.fetchBooks());
 store.dispatch(bookActions.fetchCart());
 
-console.log('history.location:', location)
 history.listen((location, action) => {
   console.log(`The current URL is ${location.pathname}${location.search}${location.hash}`)
   console.log(`The last navigation action was ${action}`)

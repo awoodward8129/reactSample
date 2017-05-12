@@ -1,6 +1,6 @@
 import React from 'react';
 import Greeting from './Greeting';
-import BlogPage from './BlogPage';
+
 import { Link } from 'react-router-dom';
 
 export const IndexPage = ({ blogs }) => (

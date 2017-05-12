@@ -5,7 +5,8 @@ import { IndexPage } from './IndexPage';
 import logo from '../static/logo.svg';
 import '../static/App.css';
 import Greeting from './Greeting';
-import BlogPage from './BlogPage';
+import BlogDetailsPage from './blog/BlogDetailsPage';
+import BlogPage from './blog/BlogPage';
 import blogs from '../data/blogs';
 import Book from './book/BookPage';
 import CartPage from './cart/CartPage';
@@ -19,11 +20,12 @@ let state = null;
 let store = null;
 let history =null;
 const renderIndex = () => <IndexPage blogs={blogs} />;
+const renderBlogPage = () => <BlogPage blogs={blogs} />;
 
 const renderBlog = ({ match, staticContext }) => {
   const id = match.params.id;
   const blog = blogs.find(current => current.id === id);
-  return <BlogPage blog={blog} />;
+  return <BlogDetailsPage blog={blog} />;
 };
 
 const renderBook = ({ match, staticContext }) => {
@@ -58,10 +60,11 @@ class App extends Component {
 
   render() {
     return (
-      <Layout>
+      <Layout history={history}>
         <Switch>
           <Route exact path="/" render={renderIndex} />
           <Route exact path="/blog/:id" render={renderBlog} />
+          <Route exact path="/blogs" render={renderBlogPage} />
           <Route exact path='/books' component={Book} />
           <Route path="/books/:id" component={renderBook} />
           <Route path ="/bookUpdate/:id" component={renderBookUpdate}/>

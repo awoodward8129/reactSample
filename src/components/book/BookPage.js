@@ -33,10 +33,10 @@ class Book extends React.Component {
             </thead>
             <tbody>
               
-              {this.props.books.map((b, i) => <tr key={i}>
-                <td>{b.title}</td>
-                <td><Link key={b.id} to={`/books/${b.key}`}>View</Link></td>
-                  <td><Link key={b.id} to={`/bookUpdate/${b.id}`}>Update</Link></td>
+              {Object.keys(this.props.books).map((b) => <tr>
+                <td>{this.props.books[b].title}</td>
+                <td><Link key={b} to={`/books/${b}`}>View</Link></td>
+                
               </tr>)}
             </tbody>
           </table>

@@ -28,8 +28,9 @@ export const fetchBooks = () => {
   return (dispatch) => {
     // Returns a promise
     books.on('value',  snapshot => {
+
       dispatch(
-        fetchBooksSuccess(Object.values(snapshot.val()))
+        fetchBooksSuccess(snapshot.val())
       )
     })
     // return Axios.get(apiUrl)
@@ -45,15 +46,16 @@ export const fetchBooks = () => {
 };
 export const createBook = (book) => {
   return (dispatch) => {
-    return Axios.post(apiUrl, book)
-      .then(response => {
-        // Dispatch a synchronous action
-        // to handle data
-        dispatch(createBookSuccess(response.data))
-      })
-      .catch(error => {
-        throw(error);
-      });
+         books.push(book);
+    // return Axios.post(apiUrl, book)
+    //   .then(response => {
+    //     // Dispatch a synchronous action
+    //     // to handle data
+    //     dispatch(createBookSuccess(response.data))
+    //   })
+    //   .catch(error => {
+    //     throw(error);
+    //   });
   };
 };
 

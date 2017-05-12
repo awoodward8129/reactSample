@@ -24,20 +24,20 @@ const renderBlogPage = () => <BlogPage blogs={blogs} />;
 
 const renderBlog = ({ match, staticContext }) => {
   const id = match.params.id;
-  const blog = blogs.find(current => current.id === id);
+  const blog = blogs.find(current => current.key === id);
   return <BlogDetailsPage blog={blog} />;
 };
 
 const renderBook = ({ match, staticContext }) => {
   const id = match.params.id;
-  const book = state.books.find(current => current.id === id);
-  console.log(history);
-  return <BookDetailsPage book={book} history={history}/>;
+  const book = store.dispatch(bookActions.fetchBookById(id));
+  state = store.getState();
+   return <BookDetailsPage book={state.book} history={history}/>;
 };
 const renderBookUpdate = ({ match, staticContext }) => {
   const id = match.params.id;
   const book = state.books.find(current => current.id === id);
-  console.log(history);
+
   return <BookUpdatePage book={book} history={history}/>;
 };
 const renderCart = ({ match, staticContext }) => {

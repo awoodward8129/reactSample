@@ -23,6 +23,7 @@ export const booksReducer = (state = [], action) => {
       ];
     case 'FETCH_BOOKS_SUCCESS':
       return action.books;
+      
     default: 
       return state;
   }

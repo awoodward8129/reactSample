@@ -1,6 +1,18 @@
 // ./src/actions/bookActions.js
 import Axios from 'axios';
 import actionTypes from './actionTypes';
+import firebase from 'firebase'
+  var config = {
+    apiKey: "AIzaSyCaoZkH2WLfVNu-f6-EPqaTfmd5jpCSnzE",
+    authDomain: "firstreactproject-4f176.firebaseapp.com",
+    databaseURL: "https://firstreactproject-4f176.firebaseio.com",
+    projectId: "firstreactproject-4f176",
+    storageBucket: "firstreactproject-4f176.appspot.com",
+    messagingSenderId: "693568818332"
+  };
+  firebase.initializeApp(config);
+  const books =  firebase.database().ref().child('books');
+  const database = firebase.database().ref();
 //API URL
 const apiUrl = 'http://590cb93b1c626d0011c11f39.mockapi.io/api/book';
 export const fetchBooksSuccess = (books) => {
@@ -15,15 +27,20 @@ export const fetchBooks = () => {
   // that dispatches an action at a later time
   return (dispatch) => {
     // Returns a promise
-    return Axios.get(apiUrl)
-      .then(response => {
-        // Dispatch another action
-        // to consume data
-        dispatch(fetchBooksSuccess(response.data))
-      })
-      .catch(error => {
-        throw(error);
-      });
+    books.on('value',  snapshot => {
+      dispatch(
+        fetchBooksSuccess(Object.values(snapshot.val()))
+      )
+    })
+    // return Axios.get(apiUrl)
+    //   .then(response => {
+    //     // Dispatch another action
+    //     // to consume data
+    //     dispatch(fetchBooksSuccess(response.data))
+    //   })
+    //   .catch(error => {
+    //     throw(error);
+    //   });
   };
 };
 export const createBook = (book) => {
@@ -66,16 +83,17 @@ export const deleteBookSuccess = (book) => {
 };
 export const deleteBook = (book) => {
   return (dispatch) => {
-    return Axios.delete(apiUrl+'/'+book.id)
-      .then(response => {
-        // Dispatch a synchronous action
-        // to handle data
-        dispatch(deleteBookSuccess(response.data))
-        dispatch(fetchBooks());
-      })
-      .catch(error => {
-        throw(error);
-      });
+      books.child(book.key).remove();
+    // return Axios.delete(apiUrl+'/'+book.id)
+    //   .then(response => {
+    //     // Dispatch a synchronous action
+    //     // to handle data
+    //     dispatch(deleteBookSuccess(response.data))
+    //     dispatch(fetchBooks());
+    //   })
+    //   .catch(error => {
+    //     throw(error);
+    //   });
   };
 };
 export const updateBookSuccess = (book) => {
@@ -105,16 +123,21 @@ export const fetchBookByIdSuccess = (book) => {
   }
 };
 // Async Action
-export const fetchBookById = (bookId) => {
+export const fetchBookById = (id) => {
   return (dispatch) => {
-    return Axios.get(apiUrl + '/' +bookId)
-      .then(response => {
-        // Handle data with sync action
-        dispatch(fetchBookByIdSuccess(response.data));
-      })
-      .catch(error => {
-        throw(error);
-      });
+    database.child('books').child(id).on('value',  snapshot => {
+      dispatch(
+        fetchBookByIdSuccess(snapshot.val())
+      )
+    })
+    // return Axios.get(apiUrl + '/' +bookId)
+    //   .then(response => {
+    //     // Handle data with sync action
+    //     dispatch(fetchBookByIdSuccess(response.data));
+    //   })
+    //   .catch(error => {
+    //     throw(error);
+    //   });
   };
 };
 export const addToCartSuccess = (item) =>{

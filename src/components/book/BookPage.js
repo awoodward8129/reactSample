@@ -5,11 +5,12 @@ import BookForm from './BookForm';
 import { Link } from 'react-router-dom';
 import * as bookActions from '../../actions/bookActions';
 import BookDetailsPage from './BookDetailsPage';
-let titleInput;
+
 
 class Book extends React.Component {
   constructor(props) {
     super(props);
+
   }
 
   submitBook(input) {
@@ -31,9 +32,10 @@ class Book extends React.Component {
               </tr>
             </thead>
             <tbody>
+              
               {this.props.books.map((b, i) => <tr key={i}>
                 <td>{b.title}</td>
-                <td><Link key={b.id} to={`/books/${b.id}`}>View</Link></td>
+                <td><Link key={b.id} to={`/books/${b.key}`}>View</Link></td>
                   <td><Link key={b.id} to={`/bookUpdate/${b.id}`}>Update</Link></td>
               </tr>)}
             </tbody>

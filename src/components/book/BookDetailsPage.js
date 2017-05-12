@@ -21,9 +21,9 @@ class BookDetailsPage extends Component {
       this.props.addToCart(item);
     }
 
-    deleteBook(book){
+    deleteBook(){
      
-      this.props.deleteBook(book);
+      this.props.deleteBook(this.props.id);
       this.props.history.goBack();
     }
 

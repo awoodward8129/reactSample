@@ -30,15 +30,16 @@ const renderBlog = ({ match, staticContext }) => {
 
 const renderBook = ({ match, staticContext }) => {
   const id = match.params.id;
-  const book = store.dispatch(bookActions.fetchBookById(id));
+  store.dispatch(bookActions.fetchBookById(id));
   state = store.getState();
-   return <BookDetailsPage book={state.book} history={history}/>;
+
+   return <BookDetailsPage book={state.book} history={history} id={id} />;
 };
 const renderBookUpdate = ({ match, staticContext }) => {
   const id = match.params.id;
   const book = state.books.find(current => current.id === id);
 
-  return <BookUpdatePage book={book} history={history}/>;
+  return <BookUpdatePage book={book} history={history} />;
 };
 const renderCart = ({ match, staticContext }) => {
   const cart = state.cart;

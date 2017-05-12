@@ -83,9 +83,9 @@ export const deleteBookSuccess = (book) => {
     book: null
   }
 };
-export const deleteBook = (book) => {
+export const deleteBook = (bookId) => {
   return (dispatch) => {
-      books.child(book.key).remove();
+      books.child(bookId).remove();
     // return Axios.delete(apiUrl+'/'+book.id)
     //   .then(response => {
     //     // Dispatch a synchronous action

@@ -33,9 +33,9 @@ class Book extends React.Component {
             </thead>
             <tbody>
               
-              {Object.keys(this.props.books).map((b) => <tr>
+              {Object.keys(this.props.books).map((b, i) => <tr key={i}>
                 <td>{this.props.books[b].title}</td>
-                <td><Link key={b} to={`/books/${b}`}>View</Link></td>
+                <td><Link key={b} to={`/books/${b}`} >View</Link></td>
                 
               </tr>)}
             </tbody>
@@ -58,6 +58,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     // You can now say this.props.books
     books: state.books,
+    
   }
 };
 

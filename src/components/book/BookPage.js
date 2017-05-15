@@ -8,6 +8,7 @@ import BookDetailsPage from './BookDetailsPage';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import BookDialog from './BookDialog'
 import FlatButton from 'material-ui/FlatButton';
+import {Col, Row, Grid} from 'react-bootstrap'
 let value = null;
 const styles = {
   headline: {
@@ -38,7 +39,7 @@ class Book extends React.Component {
   handleChange = (value) => {
     value = value;
   }
-  
+
   submitBook(input) {
     this.props.createBook(input);
   }
@@ -60,8 +61,15 @@ class Book extends React.Component {
         value={this.state.value}
         onChange={this.handleChange}
       >
-        <Tab label="Books" value="books">
-     <BookDialog submitBook={this.submitBook.bind(this)}/>
+            <Tab label="Books" value="books">
+      <Grid>
+        <Row className="show-grid"> 
+          <Col md={3}>
+          </Col>
+          <Col md={6}>
+     
+  
+
           <Table className="table" showCheckboxes={this.state.showCheckboxes}>
             <TableHeader displaySelectAll={this.state.showCheckboxes}
             adjustForCheckbox={this.state.showCheckboxes}
@@ -75,10 +83,20 @@ class Book extends React.Component {
               <TableRow key={i}>
                 <TableRowColumn>{this.props.books[b].title}</TableRowColumn>
                 <TableRowColumn><Link key={b} to={`/books/${b}`} ><FlatButton>View</FlatButton></Link></TableRowColumn>
-                <TableRowColumn><Link key={b} to={`/books/${b}`} ><FlatButton>Delete</FlatButton></Link></TableRowColumn>
+                <TableRowColumn><FlatButton  >Delete</FlatButton></TableRowColumn>
+         
               </TableRow>)}
             </TableBody>
           </Table>
+               </Col>
+                <Col md={3}>
+                <div className="button">
+          <BookDialog submitBook={this.submitBook.bind(this)} />
+          </div>
+          </Col>
+               </Row>
+            </Grid>
+
           </Tab>
         
           <Tab label="Add a New Book" value="newBook">
@@ -108,7 +126,8 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     // You can now say this.props.createBook
-    createBook: book => dispatch(bookActions.createBook(book))
+    createBook: book => dispatch(bookActions.createBook(book)),
+
     
   }
 };

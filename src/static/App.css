@@ -18,6 +18,10 @@
 .App-intro {
   font-size: large;
 }
+.button{
+  border: 1em;
+  padding: 1em;
+}
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }

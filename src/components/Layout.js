@@ -4,9 +4,7 @@ import logo from '../static/logo.svg';
 import MyAppBar from './MyAppBar';
 export const Layout = props => (
    <div className="App">
-    
        <MyAppBar history={props.history}/>
-
     <div >{props.children}</div>
     <footer className="footer">
       <p>

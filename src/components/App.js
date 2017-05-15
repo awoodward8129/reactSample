@@ -19,7 +19,7 @@ import BookUpdatePage from './book/BookUpdatePage'
 let state = null;
 let store = null;
 let history =null;
-const renderIndex = () => <IndexPage blogs={blogs} />;
+const renderIndex = () => <IndexPage />;
 const renderBlogPage = () => <BlogPage blogs={blogs} />;
 
 const renderBlog = ({ match, staticContext }) => {
@@ -63,7 +63,7 @@ class App extends Component {
     return (
       <Layout history={history}>
         <Switch>
-          <Route exact path="/" render={renderIndex} />
+          <Route exact path="/" render={IndexPage} />
           <Route exact path="/blog/:id" render={renderBlog} />
           <Route exact path="/blogs" render={renderBlogPage} />
           <Route exact path='/books' component={Book} />

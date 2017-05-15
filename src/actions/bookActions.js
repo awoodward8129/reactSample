@@ -59,17 +59,18 @@ export const createBook = (book) => {
   };
 };
 
-export const updateBook = (book) => {
+export const updateBook = (book, id) => {
   return (dispatch) => {
-    return Axios.put(apiUrl + '/'+book.id, book)
-      .then(response => {
-        // Dispatch a synchronous action
-        // to handle data
-        dispatch(updateBookSuccess(response.data))
-      })
-      .catch(error => {
-        throw(error);
-      });
+        books.child(id).set(book);
+    // return Axios.put(apiUrl + '/' +book.id, book)
+    //   .then(response => {
+    //     // Dispatch a synchronous action
+    //     // to handle data
+    //     dispatch(updateBookSuccess(response.data))
+    //   })
+    //   .catch(error => {
+    //     throw(error);
+    //   });
   };
 };
 

@@ -2,10 +2,11 @@ import React from 'react'
 import BookUpdateForm from './BookUpdateForm';
 import * as bookActions from '../../actions/bookActions';
 import {connect} from 'react-redux'
-
+let id = null;
 class BookUpdatePage extends React.Component {
 constructor(props) {
     super(props);
+    id = props.id;
   }
    submitBook(input) {
     this.props.updateBook(input);
@@ -14,7 +15,7 @@ constructor(props) {
 
   render() {
     return (
-      <BookUpdateForm onSubmit={this.submitBook.bind(this)}/>
+      <BookUpdateForm onSubmit={this.submitBook.bind(this)} id={this.props.id}/>
     );
   }
 }
@@ -33,7 +34,7 @@ const mapDispatchToProps = (dispatch) => {
      fetchBookById: bookId => dispatch(bookActions.fetchBookById(bookId)),
      addToCart: item => dispatch(bookActions.addToCart(item)),
      deleteBook: book => dispatch(bookActions.deleteBook(book)),
-     updateBook: book => dispatch(bookActions.updateBook(book))
+     updateBook: book => dispatch(bookActions.updateBook(book,id))
   }
 };
    

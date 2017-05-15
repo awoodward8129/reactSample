@@ -32,7 +32,7 @@ class BookDetailsPage extends Component {
             <div>
                 <h1>Book Details Page</h1>
                <BookDetails book={this.props.book} addToCart={this.addToCart.bind(this)}
-                deleteBook={this.deleteBook.bind(this)}  />
+                deleteBook={this.deleteBook.bind(this)} id={this.props.id}  />
                 
             
             </div>
@@ -54,7 +54,7 @@ const mapDispatchToProps = (dispatch) => {
      fetchBookById: bookId => dispatch(bookActions.fetchBookById(bookId)),
      addToCart: item => dispatch(bookActions.addToCart(item)),
      deleteBook: book => dispatch(bookActions.deleteBook(book)),
-     updateBook: book => dispatch(bookActions.updateBook(book))
+
   }
 };
    

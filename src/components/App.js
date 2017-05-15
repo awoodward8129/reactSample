@@ -32,14 +32,14 @@ const renderBook = ({ match, staticContext }) => {
   const id = match.params.id;
   store.dispatch(bookActions.fetchBookById(id));
   state = store.getState();
-
    return <BookDetailsPage book={state.book} history={history} id={id} />;
 };
+
 const renderBookUpdate = ({ match, staticContext }) => {
   const id = match.params.id;
-  const book = state.books.find(current => current.id === id);
-
-  return <BookUpdatePage book={book} history={history} />;
+  store.dispatch(bookActions.fetchBookById(id));
+  state = store.getState();
+   return <BookUpdatePage book={state.book} history={history} id={id} />;
 };
 const renderCart = ({ match, staticContext }) => {
   const cart = state.cart;

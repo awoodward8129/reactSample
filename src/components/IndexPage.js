@@ -8,9 +8,7 @@ export const IndexPage = () => {
   <div >
     <div >
         <Greeting name='Alex'/>
-  
     </div>
-   
   </div>
 )
 };

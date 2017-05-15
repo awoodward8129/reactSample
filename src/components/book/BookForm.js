@@ -1,7 +1,15 @@
 // ./src/components/book/BookForm.js
 import React from 'react';
+import RaisedButton from 'material-ui/RaisedButton';
+import TextField from 'material-ui/TextField';
+const style = {
+  margin: 12,
+};
+
 
 const BookForm = (props) => {
+
+  
     // Collector variables
     let titleInput, authorInput, priceInput, yearInput = null;
     return (
@@ -9,66 +17,64 @@ const BookForm = (props) => {
             e.preventDefault();
             // Assemble data into object
             var input = {
-              title: titleInput.value,
-              author: authorInput.value,
-              price: priceInput.value,
-              year: yearInput.value
+              title: titleInput,
+              author: authorInput,
+              price: priceInput,
+              year: yearInput
             };
             // Call method from parent component
             // to handle submission
             props.submitBook(input);
+                props.state.open =false;
             // Reset form
             e.target.reset();
           }}
             className="form-horizontal"
       >
         <div className="input-group">
-          <label className="col-sm-2 control-label">Title: </label>
-          <div className="col-sm-10">
-            <input
-              type="text"
-              name="title"
-              ref={node => titleInput = node}
-              className="form-control" />
-          </div>
+            <TextField
+            floatingLabelText="Title"
+            id="titleInput"
+            hintText="The Lord of the Rings"
+            onChange={(e, newValue) =>titleInput = newValue}
+          />
         </div>
         <br/>
         <div className="input-group">
-          <label className="col-sm-2 control-label">Author: </label>
-          <div className="col-sm-10">
-            <input
-              type="text"
-              name="author"
-              ref={node => authorInput = node}
-              className="form-control" />
-          </div>
+
+              <TextField
+            floatingLabelText="Author"
+            id="authorInput"
+            hintText="Tolkien"
+            onChange={(e, newValue) =>authorInput = newValue}
+          />
+      
         </div>
         <br/>
         <div className="input-group">
-          <label className="col-sm-2 control-label">Price: </label>
-          <div className="col-sm-10">
-            <input
-              type="number"
-              name="price"
-              ref={node => priceInput = node}
-              className="form-control" />
-          </div>
+
+            <TextField type="number"
+            floatingLabelText="Price"
+            id="priceInput"
+            hintText="123"
+            onChange={(e, newValue) =>priceInput = newValue}
+          />
         </div>
         <br/>
         <div className="input-group">
-          <label className="col-sm-2 control-label">Year: </label>
-          <div className="col-sm-10">
-            <input
-              type="text"
-              name="year"
-              ref={node => yearInput = node}
-              className="form-control" />
-          </div>
+         
+            <TextField 
+            floatingLabelText="Year"
+            id="yearInput"
+            hintText="1960"
+            onChange={(e, newValue) =>priceInput = newValue}
+          />
         </div>
         <br/>
         <div className="input-group">
           <div className="col-sm-offset-2 col-sm-10">
-            <input type="submit" className="btn btn-default"/>
+            <RaisedButton label="Submit"  type="submit" primary={true} style={style} />
+  
           </div>
         </div>
       </form>

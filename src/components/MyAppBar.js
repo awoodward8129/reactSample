@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
   import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import IconButton from 'material-ui/IconButton';
@@ -40,7 +39,7 @@ class MyAppBar extends React.Component {
   
   render() {
     return( 
-  <MuiThemeProvider muiTheme={getMuiTheme()}>
+
     <div>
          <AppBar
          title={<span style={style.title}>Alex's Books</span>}
@@ -84,7 +83,7 @@ class MyAppBar extends React.Component {
     </div>
 
  
- </MuiThemeProvider>
+
  
     )
   }

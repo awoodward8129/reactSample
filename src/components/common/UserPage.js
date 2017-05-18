@@ -1,6 +1,9 @@
 import React from 'react'
 import * as userActions from '../../actions/userActions';
 import { connect } from 'react-redux';
+import RaisedButton from 'material-ui/RaisedButton';
+import TextField from 'material-ui/TextField';
+
 class UserPage extends React.Component {
  
   constructor(props) {
@@ -9,13 +12,65 @@ class UserPage extends React.Component {
   }
 
   componentDidMount(){
-      this.props.fetchCurrentUser();
+      //this.props.fetchCurrentUser();
   }
 
   render(){
+      let emailInput, passwordInput = null;
       return(
         <div>
-           {this.props.user.email}
+            <form onSubmit={e => {
+            e.preventDefault();
+            // Assemble data into object
+            var input = {
+              email: emailInput,
+              password: passwordInput,
+            
+            };
+            // Call method from parent component
+            // to handle submission
+            this.props.signIn(input);
+              
+            // Reset form
+            e.target.reset();
+          }}
+            className="form-horizontal"
+      >
+        <div className="input-group">
+            <TextField
+            floatingLabelText="Email"
+            id="emailInput"
+            hintText="abc@123.com"
+            onChange={(e, newValue) =>emailInput = newValue}
+          />
+        </div>
+        <br/>
+        <div className="input-group">
+
+              <TextField
+            floatingLabelText="password"
+            id="passwordInput"
+            hintText="abc"
+            onChange={(e, newValue) =>passwordInput = newValue}
+          />
+      
+        </div>
+       
+        <br/>
+        <div className="input-group">
+          <div className="col-sm-offset-2 col-sm-10">
+            <RaisedButton label="Sign In"  type="submit" primary={true}  />
+  
+          </div>
+        </div>
+      </form>
+
+      
+            <RaisedButton label="Sign Out" onTouchTap={this.props.signOut} />
+            <div >
+                     {this.props.user.email}
+            </div>
+      
          </div>
       )
   }
@@ -36,7 +91,10 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     // You can now say this.props.createBook
-    fetchCurrentUser: user => dispatch(userActions.fetchCurrentUser()),
+    fetchCurrentUser: dispatch(userActions.fetchCurrentUser()),
+   // createUser:  dispatch(userActions.createUser()),
+    signOut: user => dispatch(userActions.signOut()),
+    signIn: user => dispatch(userActions.signIn(user))
 
     
   }

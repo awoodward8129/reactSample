@@ -15,7 +15,8 @@ import BookDetailsPage from './book/BookDetailsPage'
 import { Navbar, Jumbotron, Button } from 'react-bootstrap';
 import configureStore from '../store/configureStore';
 import * as bookActions from '../actions/bookActions';
-import BookUpdatePage from './book/BookUpdatePage'
+import BookUpdatePage from './book/BookUpdatePage';
+import UserPage from './common/UserPage';
 let state = null;
 let store = null;
 let history =null;
@@ -70,6 +71,7 @@ class App extends Component {
           <Route path="/books/:id" component={renderBook} />
           <Route path ="/bookUpdate/:id" component={renderBookUpdate}/>
           <Route exact path="/about" render={About} />
+           <Route exact path="/users" component={UserPage} />
           <Route path="/cart" component={renderCart}></Route>
         </Switch>
       </Layout>

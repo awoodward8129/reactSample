@@ -1,20 +1,19 @@
 // ./src/actions/bookActions.js
 import Axios from 'axios';
 import actionTypes from './actionTypes';
-import firebase from 'firebase'
-  var config = {
-    apiKey: "AIzaSyCaoZkH2WLfVNu-f6-EPqaTfmd5jpCSnzE",
-    authDomain: "firstreactproject-4f176.firebaseapp.com",
-    databaseURL: "https://firstreactproject-4f176.firebaseio.com",
-    projectId: "firstreactproject-4f176",
-    storageBucket: "firstreactproject-4f176.appspot.com",
-    messagingSenderId: "693568818332"
-  };
-  firebase.initializeApp(config);
-  const books =  firebase.database().ref().child('books');
-  const database = firebase.database().ref();
+import firebase from '../data/firebaseDatabase.js'
+  const books = firebase.database().ref().child('books');
+
 //API URL
 const apiUrl = 'http://590cb93b1c626d0011c11f39.mockapi.io/api/book';
+
+export const fetchDatabaseSuccess = (database) => {
+  return {
+    type: 'FETCHDATABASE_SUCCESS',
+    database
+  }
+};
+
 export const fetchBooksSuccess = (books) => {
   return {
     type: 'FETCH_BOOKS_SUCCESS',
@@ -128,7 +127,7 @@ export const fetchBookByIdSuccess = (book) => {
 // Async Action
 export const fetchBookById = (id) => {
   return (dispatch) => {
-    database.child('books').child(id).on('value',  snapshot => {
+    books.child(id).on('value',  snapshot => {
       dispatch(
         fetchBookByIdSuccess(snapshot.val())
       )

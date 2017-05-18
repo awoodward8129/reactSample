@@ -7,7 +7,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 export const Layout = props => (
     <MuiThemeProvider muiTheme={getMuiTheme()}>
    <div className="App">
-       <MyAppBar history={props.history}/>
+       <MyAppBar history={props.history} store={props.store}/>
     <div >{props.children}</div>
     <footer >
       <p>

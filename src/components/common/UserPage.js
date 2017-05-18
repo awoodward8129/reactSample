@@ -50,6 +50,7 @@ class UserPage extends React.Component {
               <TextField
             floatingLabelText="password"
             id="passwordInput"
+            type="password"
             hintText="abc"
             onChange={(e, newValue) =>passwordInput = newValue}
           />

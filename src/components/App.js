@@ -62,7 +62,7 @@ class App extends Component {
 
   render() {
     return (
-      <Layout history={history}>
+      <Layout history={history} store={store}>
         <Switch>
           <Route exact path="/" render={IndexPage} />
           <Route exact path="/blog/:id" render={renderBlog} />

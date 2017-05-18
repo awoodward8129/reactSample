@@ -56,13 +56,22 @@ export const fetchCurrentUser = () => {
 // });
 //   };
 // };
-
+export const signInError = (error) => {
+  return {
+    type: 'SIGNIN_ERROR',
+    error
+  }
+};
 export const signIn = (user) => {
    return (dispatch) => {
     database.auth().signInWithEmailAndPassword(user.email, user.password).catch(function(error) {
       // Handle Errors here.
       var errorCode = error.code;
       var errorMessage = error.message;
+         
+       dispatch(
+            signInError(error)
+          )
       // ...
     });
    }

@@ -18,6 +18,11 @@
 .App-intro {
   font-size: large;
 }
+.App-content{
+  margin-top: 2%;
+  margin-left:10%;
+  margin-right:10%;
+}
 .button{
   border: 1em;
   padding: 1em;

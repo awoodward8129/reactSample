@@ -10,10 +10,7 @@ import BookForm from './BookForm';
  *
  * You can also close this dialog by clicking outside the dialog, or with the 'Esc' key.
  */
-const customContentStyle = {
-  width: '25%',
-  maxWidth: 'none',
-};
+
 export default class BookDialog extends React.Component {
   state = {
     open: false,
@@ -47,7 +44,7 @@ export default class BookDialog extends React.Component {
         <RaisedButton label="Add A New Book" onTouchTap={this.handleOpen} />
         <Dialog
           title="Dialog With Actions"
-          contentStyle={customContentStyle}
+      
           modal={false}
           open={this.state.open}
           onRequestClose={this.handleClose}

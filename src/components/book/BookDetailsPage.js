@@ -13,6 +13,9 @@ class BookDetailsPage extends Component {
     super(props);
   
    }
+     componentDidMount(){
+    this.props.fetchBookById(this.props.id);
+  }
    addToCart(book){
       const item = {
         title: book.title,
@@ -40,7 +43,7 @@ class BookDetailsPage extends Component {
     }
    }
 const mapStateToProps = (state, ownProps) => {
-  state.book = ownProps.book;
+
   return {
     // You can now say this.props.book
    book : state.book
@@ -51,7 +54,7 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     // You can now say this.props.createBook
-     fetchBookById: bookId => dispatch(bookActions.fetchBookById(bookId)),
+     fetchBookById: book => dispatch(bookActions.fetchBookById(book)),
      addToCart: item => dispatch(bookActions.addToCart(item)),
      deleteBook: book => dispatch(bookActions.deleteBook(book)),
 

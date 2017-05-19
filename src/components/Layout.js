@@ -8,7 +8,8 @@ export const Layout = props => (
     <MuiThemeProvider muiTheme={getMuiTheme()}>
    <div className="App">
        <MyAppBar history={props.history} store={props.store}/>
-    <div >{props.children}</div>
+      
+    <div className="App-content">{props.children}</div>
     <footer >
       <p>
         This is a demo app to showcase <strong>universal Javascript</strong>

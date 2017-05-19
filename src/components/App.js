@@ -31,9 +31,7 @@ const renderBlog = ({ match, staticContext }) => {
 
 const renderBook = ({ match, staticContext }) => {
   const id = match.params.id;
-  store.dispatch(bookActions.fetchBookById(id));
-  state = store.getState();
-   return <BookDetailsPage book={state.book} history={history} id={id} />;
+   return <BookDetailsPage  history={history} id={id} />;
 };
 
 const renderBookUpdate = ({ match, staticContext }) => {
@@ -63,7 +61,7 @@ class App extends Component {
   render() {
     return (
       <Layout history={history} store={store}>
-        <Switch>
+      
           <Route exact path="/" render={IndexPage} />
           <Route exact path="/blog/:id" render={renderBlog} />
           <Route exact path="/blogs" render={renderBlogPage} />
@@ -71,9 +69,9 @@ class App extends Component {
           <Route path="/books/:id" component={renderBook} />
           <Route path ="/bookUpdate/:id" component={renderBookUpdate}/>
           <Route exact path="/about" render={About} />
-           <Route exact path="/users" component={UserPage} />
+          <Route exact path="/users" component={UserPage} />
           <Route path="/cart" component={renderCart}></Route>
-        </Switch>
+      
       </Layout>
     );
   }

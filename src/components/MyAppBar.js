@@ -15,6 +15,9 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 injectTapEventPlugin();
 const Logged = (props) => (
+  <div> {props.user}
+
+
   <IconMenu
     {...props}
     iconButtonElement={
@@ -27,6 +30,7 @@ const Logged = (props) => (
     <MenuItem primaryText="Help" />
     <MenuItem primaryText="Sign out" />
   </IconMenu>
+    </div>
 );
 
 const style = {
@@ -60,13 +64,8 @@ class MyAppBar extends React.Component {
    handleChange() {
   let previousValue = currentValue
   currentValue = store.getState();
-  currentValue.user.email ? this.setState({logged: true}) :  this.setState({logged: false});
-
-  
-
-  if (previousValue !== currentValue) {
-    console.log('Some deep nested property changed from', previousValue, 'to', currentValue)
-  }
+  user = currentValue.user.email;
+  user ? this.setState({logged: true}) :  this.setState({logged: false});
 }
 
 
@@ -80,7 +79,7 @@ class MyAppBar extends React.Component {
 
           onTitleTouchTap={this.handleTitleTouchTap}
 
-          iconElementRight={this.state.logged ? <Logged/> : <RaisedButton label="Sign In" containerElement={<Link to="/users" />} />} />
+          iconElementRight={this.state.logged ? <Logged user={user}/> : <RaisedButton label="Sign In" containerElement={<Link to="/users" />} />} />
         <Drawer docked={false}
           width={200}
           open={this.state.open}

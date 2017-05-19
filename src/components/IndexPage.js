@@ -1,16 +1,19 @@
 import React from 'react';
 
 import FlatButton from 'material-ui/FlatButton';
-import Card from './card/card';
+import Card from './card/Card';
+import BlogCard from './card/BlogCard';
 import {Col, Row, Grid} from 'react-bootstrap'
-
+import SvgIcon from 'material-ui/SvgIcon';
 export const IndexPage = () => {
   return (
   <div >
+ 
+
     <Grid>
       <Row>   
         <Col  md={5}>
-        <Card />
+        <BlogCard />
         </Col>
         <br className="visible-xs"/>
         <Col md={3}>
@@ -29,10 +32,7 @@ export const IndexPage = () => {
           <Card />
        </Col>
         </Row>
-        
-        <FlatButton >Blogs</FlatButton>
-        <FlatButton >Reviews</FlatButton>
-        <FlatButton >Photos</FlatButton>
+
     </Grid>
   
   </div>

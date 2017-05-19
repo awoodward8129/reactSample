@@ -12,7 +12,6 @@ import history from 'history';
 import UserPage from './common/UserPage';
 import RaisedButton from 'material-ui/RaisedButton';
 
-
 injectTapEventPlugin();
 const Logged = (props) => (
   <div> {props.user}
@@ -67,19 +66,13 @@ class MyAppBar extends React.Component {
   user = currentValue.user.email;
   user ? this.setState({logged: true}) :  this.setState({logged: false});
 }
-
-
   render() {
     return (
-
-      <div>
         <AppBar
-          title={<span style={style.title}>Alex's Books</span>}
+          title={<span style={style.title}>Alex Woodward</span>}
           onLeftIconButtonTouchTap={this.handleToggle}
-
           onTitleTouchTap={this.handleTitleTouchTap}
-
-          iconElementRight={this.state.logged ? <Logged user={user}/> : <RaisedButton label="Sign In" containerElement={<Link to="/users" />} />} />
+          iconElementRight={this.state.logged ? <Logged user={user}/> : <RaisedButton label="Sign In" containerElement={<Link to="/users" />} />} >
         <Drawer docked={false}
           width={200}
           open={this.state.open}
@@ -112,10 +105,10 @@ class MyAppBar extends React.Component {
               primaryText="Blogs"
             />
           </List>
-
         </Drawer>
-      </div>
-
+        </AppBar>
+       
+       
     )
   }
 }

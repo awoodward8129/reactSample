@@ -4,17 +4,15 @@ import logo from '../static/logo.svg';
 import MyAppBar from './MyAppBar';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import Footer from './footer/Footer';
 export const Layout = props => (
     <MuiThemeProvider muiTheme={getMuiTheme()}>
    <div className="App">
-       <MyAppBar history={props.history} store={props.store}/>
-      
+       <MyAppBar history={props.history} store={props.store}    />
     <div className="App-content">{props.children}</div>
+    <br/>
     <footer >
-      <p>
-        This is a demo app to showcase <strong>universal Javascript</strong>
-        with <strong>React</strong> and <strong>Express</strong>.
-      </p>
+      <Footer history={props.history}  />
     </footer>
   </div>
    </MuiThemeProvider>

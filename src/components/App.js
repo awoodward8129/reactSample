@@ -4,7 +4,6 @@ import { Layout } from './Layout';
 import { IndexPage } from './IndexPage';
 import logo from '../static/logo.svg';
 import '../static/App.css';
-import Greeting from './Greeting';
 import BlogDetailsPage from './blog/BlogDetailsPage';
 import BlogPage from './blog/BlogPage';
 import blogs from '../data/blogs';

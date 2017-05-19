@@ -27,6 +27,11 @@
   border: 1em;
   padding: 1em;
 }
+.card{
+    display: block;
+    float: left;
+    margin-right: 0.4em;
+}
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }

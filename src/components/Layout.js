@@ -8,10 +8,10 @@ import Footer from './footer/Footer';
 export const Layout = props => (
     <MuiThemeProvider muiTheme={getMuiTheme()}>
    <div className="App">
-       <MyAppBar history={props.history} store={props.store}    />
+       <MyAppBar history={props.history} store={props.store} className='App-header'  />
     <div className="App-content">{props.children}</div>
     <br/>
-    <footer >
+    <footer className="App-content">
       <Footer history={props.history}  />
     </footer>
   </div>

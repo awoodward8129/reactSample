@@ -8,11 +8,13 @@ import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap/dist/css/bootstrap-theme.css';
 import configureStore from './store/configureStore';
 import * as bookActions from './actions/bookActions';
+import * as blogActions from './actions/blogActions';
 import {createBrowserHistory} from 'history';
 
 const history = createBrowserHistory();
 const location =history.location
 const store = configureStore();
+store.dispatch(blogActions.fetchBlogs());
 store.dispatch(bookActions.fetchBooks());
 store.dispatch(bookActions.fetchCart());
 

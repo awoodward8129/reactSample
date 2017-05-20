@@ -8,8 +8,6 @@ import SvgIcon from 'material-ui/SvgIcon';
 export const IndexPage = () => {
   return (
   <div >
- 
-
     <Grid>
       <Row>   
         <Col  md={5}>

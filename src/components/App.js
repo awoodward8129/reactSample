@@ -20,7 +20,11 @@ let state = null;
 let store = null;
 let history =null;
 const renderIndex = () => <IndexPage />;
-const renderBlogPage = () => <BlogPage blogs={blogs} />;
+const renderBlogPage = ({match, staticContext}) =>{
+
+  state = store.getState();
+ return <BlogPage blogs={state.blogs} />;
+};
 
 const renderBlog = ({ match, staticContext }) => {
   const id = match.params.id;

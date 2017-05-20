@@ -43,7 +43,7 @@ export default class CardExampleControlled extends React.Component {
         />
         <CardMedia
          
-          overlay={<CardTitle title="Overlay title" subtitle="Overlay subtitle" />}
+          overlay={<CardTitle title={this.props.title} subtitle="Overlay subtitle" />}
         >
           <img src={nature}/>
         </CardMedia>

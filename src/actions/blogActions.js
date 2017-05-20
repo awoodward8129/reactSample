@@ -2,34 +2,25 @@
 import Axios from 'axios';
 import actionTypes from './actionTypes';
 import firebase from '../data/firebaseDatabase.js'
-  const books = firebase.database().ref().child('books');
+  const blogs = firebase.database().ref().child('blogs');
 
-//API URL
-const apiUrl = 'http://590cb93b1c626d0011c11f39.mockapi.io/api/book';
 
-export const fetchDatabaseSuccess = (database) => {
+export const fetchBlogsSuccess = (blogs) => {
   return {
-    type: 'FETCHDATABASE_SUCCESS',
-    database
-  }
-};
-
-export const fetchBooksSuccess = (books) => {
-  return {
-    type: 'FETCH_BOOKS_SUCCESS',
-    books
+    type: 'FETCH_BLOGS_SUCCESS',
+    blogs
   }
 };
 //Async Action
-export const fetchBooks = () => {
+export const fetchBlogs = () => {
   // Returns a dispatcher function
   // that dispatches an action at a later time
   return (dispatch) => {
     // Returns a promise
-    books.on('value',  snapshot => {
+    blogs.on('value',  snapshot => {
 
       dispatch(
-        fetchBooksSuccess(snapshot.val())
+        fetchBlogsSuccess(snapshot.val())
       )
     })
     // return Axios.get(apiUrl)
@@ -45,7 +36,7 @@ export const fetchBooks = () => {
 };
 export const createBook = (book) => {
   return (dispatch) => {
-         books.push(book);
+         blogs.push(book);
     // return Axios.post(apiUrl, book)
     //   .then(response => {
     //     // Dispatch a synchronous action
@@ -60,7 +51,7 @@ export const createBook = (book) => {
 
 export const updateBook = (book, id) => {
   return (dispatch) => {
-        books.child(id).set(book);
+        blogs.child(id).set(book);
     // return Axios.put(apiUrl + '/' +book.id, book)
     //   .then(response => {
     //     // Dispatch a synchronous action
@@ -85,7 +76,7 @@ export const deleteBookSuccess = (book) => {
 };
 export const deleteBook = (bookId) => {
   return (dispatch) => {
-      books.child(bookId).remove();
+      blogs.child(bookId).remove();
     // return Axios.delete(apiUrl+'/'+book.id)
     //   .then(response => {
     //     // Dispatch a synchronous action
@@ -127,7 +118,7 @@ export const fetchBookByIdSuccess = (book) => {
 // Async Action
 export const fetchBookById = (id) => {
   return (dispatch) => {
-    books.child(id).on('value',  snapshot => {
+    blogs.child(id).on('value',  snapshot => {
       dispatch(
         fetchBookByIdSuccess(snapshot.val())
       )
@@ -140,41 +131,5 @@ export const fetchBookById = (id) => {
     //   .catch(error => {
     //     throw(error);
     //   });
-  };
-};
-export const addToCartSuccess = (item) =>{
-  return {
-    type:'ADD_TO_CART_SUCCESS',
-    item
-  }
-};
-export const addToCart = (item) => {
-  return (dispatch) => {
-    return Axios.post('http://590cb93b1c626d0011c11f39.mockapi.io/api/cart', item)
-      .then(response => {
-        dispatch(addToCartSuccess(response.data))
-      })
-      .catch(error => {
-        throw(error);
-      })
-  }
-};
-// Sync load cart
-export const fetchCartSuccess = (items) => {
-  return {
-    type: 'FETCH_CART_SUCCESS',
-    items
-  }
-};
-// Async load cart
-export const fetchCart = () => {
-  return (dispatch) => {
-    return Axios.get('http://590cb93b1c626d0011c11f39.mockapi.io/api/cart')
-      .then(response => {
-        dispatch(fetchCartSuccess(response.data))
-      })
-      .catch(error => {
-        throw(error);
-      });
   };
 };

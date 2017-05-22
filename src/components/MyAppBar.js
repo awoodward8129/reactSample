@@ -68,8 +68,9 @@ class MyAppBar extends React.Component {
 }
   render() {
     return (
-        <AppBar
-        style={{position: 'fixed'}} 
+        <AppBar 
+    
+        style={{position: 'fixed', backgroundColor: '#000000'}} 
           title={<span style={style.title}>Alex Woodward</span>}
           onLeftIconButtonTouchTap={this.handleToggle}
           onTitleTouchTap={this.handleTitleTouchTap}

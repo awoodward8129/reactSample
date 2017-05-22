@@ -34,18 +34,12 @@ export default class CardExampleControlled extends React.Component {
   render() {
     return (
       <Card expanded={this.state.expanded} onExpandChange={this.handleExpandChange}>
-         <CardHeader
-          title="URL Avatar"
-          subtitle="Subtitle"
-        
-          avatar={avatar}
-     
-        />
+
         <CardMedia
          
           overlay={<CardTitle title={this.props.title} subtitle="Overlay subtitle" />}
         >
-          <img src={nature}/>
+          <img src='https://lh3.googleusercontent.com/k-h-DvXI0BC5BT3D_zXdHrRS7TwPQr0Qk45MtdRN2oVLdtETBm_W_FW6KcKhEUqOpzXRS-Fpl91iKoFpbRVZSvx7HA-QqWnzrv65Ol_3rX-rNIAZ0RV-BZB7UDpn-6S_O4oamQ'/>
         </CardMedia>
       
         <CardText >

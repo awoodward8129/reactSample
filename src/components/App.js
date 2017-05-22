@@ -17,6 +17,7 @@ import * as bookActions from '../actions/bookActions';
 import BookUpdatePage from './book/BookUpdatePage';
 import UserPage from './common/UserPage';
 import GalleryPage from './photo/PhotoGallery'
+import Login from './login/Login'
 let state = null;
 let store = null;
 let history =null;
@@ -79,6 +80,7 @@ class App extends Component {
           <Route path ="/bookUpdate/:id" component={renderBookUpdate}/>
           <Route exact path="/about" render={About} />
           <Route exact path="/users" component={UserPage} />
+          <Route exact path="/login" component={Login} />
           <Route exact path="/photos" component={GalleryPage} />
           <Route path="/cart" component={renderCart}></Route>
       

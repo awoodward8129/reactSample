@@ -3,7 +3,7 @@ import {booksReducer, bookReducer} from './bookReducers';
 import {cartReducer} from './cartReducers';
 import {reducer as formReducer} from 'redux-form';
 import {userReducer} from './userReducer';
-import {blogsReducer} from './blogReducers';
+import {blogsReducer, blogReducer} from './blogReducers';
 
 export default combineReducers({
  books: booksReducer,
@@ -12,6 +12,7 @@ export default combineReducers({
   form: formReducer,
   user: userReducer,
   blogs: blogsReducer,
+  blog: blogReducer
   // More reducers if there are
   // can go here
 });

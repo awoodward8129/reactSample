@@ -109,18 +109,18 @@ export const createBookSuccess = (book) => {
   }
 };
 // Sync Action
-export const fetchBookByIdSuccess = (book) => {
+export const fetchBlogByIdSuccess = (blog) => {
   return {
-    type: 'FETCH_BOOK_BY_ID_SUCCESS',
-    book
+    type: 'FETCH_BLOG_BY_ID_SUCCESS',
+    blog
   }
 };
 // Async Action
-export const fetchBookById = (id) => {
+export const fetchBlogById = (id) => {
   return (dispatch) => {
     blogs.child(id).on('value',  snapshot => {
       dispatch(
-        fetchBookByIdSuccess(snapshot.val())
+        fetchBlogByIdSuccess(snapshot.val())
       )
     })
     // return Axios.get(apiUrl + '/' +bookId)

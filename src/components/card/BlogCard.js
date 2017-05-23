@@ -6,6 +6,7 @@ import Avatar from 'material-ui/Avatar';
 import nature from '../images/nature-forest-industry-rails.jpg'
 import avatar from '../images/ok-128.jpg'
 const style = {align:'left'};
+import Link from 'react-router'
 export default class CardExampleControlled extends React.Component {
 
   constructor(props) {
@@ -39,10 +40,11 @@ export default class CardExampleControlled extends React.Component {
          
           overlay={<CardTitle title={this.props.title} subtitle="Overlay subtitle" />}
         >
-          <img src='https://lh3.googleusercontent.com/k-h-DvXI0BC5BT3D_zXdHrRS7TwPQr0Qk45MtdRN2oVLdtETBm_W_FW6KcKhEUqOpzXRS-Fpl91iKoFpbRVZSvx7HA-QqWnzrv65Ol_3rX-rNIAZ0RV-BZB7UDpn-6S_O4oamQ'/>
+   <img src='https://lh3.googleusercontent.com/k-h-DvXI0BC5BT3D_zXdHrRS7TwPQr0Qk45MtdRN2oVLdtETBm_W_FW6KcKhEUqOpzXRS-Fpl91iKoFpbRVZSvx7HA-QqWnzrv65Ol_3rX-rNIAZ0RV-BZB7UDpn-6S_O4oamQ'/>
         </CardMedia>
       
         <CardText >
+          
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
           Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
@@ -50,7 +52,8 @@ export default class CardExampleControlled extends React.Component {
         </CardText>
         <CardActions>
           <FlatButton label="Go to this post" onTouchTap={this.handleExpand} />
-          <FlatButton label="Reduce" onTouchTap={this.handleReduce} />
+          <FlatButton  onTouchTap={this.handleReduce} >  </FlatButton>
+         
         </CardActions>
       </Card>
     );

@@ -35,8 +35,7 @@ const renderBlogPage = ({match, staticContext}) =>{
 
 const renderBlog = ({ match, staticContext }) => {
   const id = match.params.id;
-  const blog = blogs.find(current => current.key === id);
-  return <BlogDetailsPage blog={blog} />;
+  return <BlogDetailsPage id={id} />;
 };
 
 const renderBook = ({ match, staticContext }) => {

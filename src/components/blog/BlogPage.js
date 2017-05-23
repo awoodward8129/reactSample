@@ -33,8 +33,8 @@ function SetUpGrid(values) {
                 <Row>
             {Object.keys(values.props.blogs).map((b, i) => (
               
-                <Col md={getRandomInt(2,5)}>
-                <BlogCard key={i} title={values.props.blogs[b].title} />
+                <Col md={getRandomInt(2,5)} key={i} >
+                <BlogCard title={values.props.blogs[b].title} blogId={b}/>
                 <br/>
                 </Col>
             ))

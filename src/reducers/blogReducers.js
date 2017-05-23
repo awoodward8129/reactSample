@@ -11,3 +11,15 @@ export const blogsReducer = (state = [], action) => {
       return state;
   }
 }
+
+
+export const blogReducer = (state = [], action) => {
+  switch (action.type) {
+    // Handle fetch by Id
+    case 'FETCH_BLOG_BY_ID_SUCCESS':
+      return action.blog;
+    default:
+      return state;
+  }
+};
+
